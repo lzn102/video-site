@@ -68,25 +68,25 @@ export default function Transcribe() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient">
+    <div id="transcribe-container-1" className="min-h-screen bg-gradient">
       <Head>
-        <title>{t.transcribeTitle} - {t.homeTitle}</title>
-        <meta name="description" content={language === 'zh' ? '将音频文件智能转换为带时间戳的字幕文件' : 'Intelligently convert audio files to timestamped subtitle files'} />
+        <title id="transcribe-title-1">{t.transcribeTitle} - {t.homeTitle}</title>
+        <meta id="transcribe-description-meta-1" name="description" content={language === 'zh' ? '将音频文件智能转换为带时间戳的字幕文件' : 'Intelligently convert audio files to timestamped subtitle files'} />
       </Head>
 
       <Header />
-      <main className="main container">
+      <main id="transcribe-main-1" className="main container">
         
-        <div className="text-center pt-16 pb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+        <div id="transcribe-hero-section-1" className="text-center pt-16 pb-12">
+          <h1 id="transcribe-heading-1" className="text-4xl font-bold text-gray-800 mb-4">
             {t.transcribeTitle}
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p id="transcribe-description-1" className="text-xl text-gray-600 max-w-2xl mx-auto">
             {t.transcribeDescription}
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
+        <div id="transcribe-form-container-1" className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
           <UploadForm 
             onFileUpload={handleFileUpload} 
             fileType="audio" 
@@ -95,29 +95,30 @@ export default function Transcribe() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4 mt-6 text-center text-red-700 max-w-2xl mx-auto">
-            <p>{error}</p>
+          <div id="transcribe-error-container-1" className="bg-red-50 border border-red-200 rounded-md p-4 mt-6 text-center text-red-700 max-w-2xl mx-auto">
+            <p id="transcribe-error-message-1">{error}</p>
           </div>
         )}
 
         {result && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-4 mt-6 text-center max-w-2xl mx-auto">
-            <h2 className="text-xl font-bold text-green-800 mb-3">{t.transcribeSuccess}</h2>
+          <div id="transcribe-result-container-1" className="bg-green-50 border border-green-200 rounded-md p-4 mt-6 text-center max-w-2xl mx-auto">
+            <h2 id="transcribe-result-title-1" className="text-xl font-bold text-green-800 mb-3">{t.transcribeSuccess}</h2>
             <a 
+              id="transcribe-download-link-1"
               href={result.url} 
               download={result.filename}
               className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover-bg-blue-700"
             >
               {t.transcribeDownload} {result.filename}
             </a>
-            <div className="mt-3 text-sm text-green-700">
+            <div id="transcribe-points-deducted-1" className="mt-3 text-sm text-green-700">
               {language === 'zh' ? '已扣除 15 积分' : '15 points deducted'}
             </div>
           </div>
         )}
 
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

@@ -10,18 +10,18 @@ const Header = () => {
   const t = translations[language];
   
   return (
-    <header className="header">
-      <div className="header-content">
-        <div className="header-left">
-          <Link href="/" className="logo">
-            <span className="logo-icon">🎬</span>
-            <span className="logo-text">{language === 'zh' ? '多媒体工具' : 'Media Tools'}</span>
+    <header id="header-container-1" className="header">
+      <div id="header-content-1" className="header-content">
+        <div id="header-left-1" className="header-left">
+          <Link id="header-logo-link-1" href="/" className="logo">
+            <span id="header-logo-icon-1" className="logo-icon">🎬</span>
+            <span id="header-logo-text-1" className="logo-text">{language === 'zh' ? '多媒体工具' : 'Media Tools'}</span>
           </Link>
         </div>
-        <div className="header-right">
-          <div className="points-display-header">
-            <span className="points-label">💎</span>
-            <span className="points-value">{points}</span>
+        <div id="header-right-1" className="header-right">
+          <div id="header-points-display-1" className="points-display-header">
+            <span id="header-points-label-1" className="points-label">💎</span>
+            <span id="header-points-value-1" className="points-value">{points}</span>
           </div>
           <LanguageSwitcher />
         </div>

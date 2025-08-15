@@ -8,9 +8,9 @@ const PointsDisplay = () => {
   const t = translations[language];
   
   return (
-    <div className="points-display">
-      <span className="points-label">💎</span>
-      <span className="points-value">{points}</span>
+    <div id="points-display-container-1" className="points-display">
+      <span id="points-display-label-1" className="points-label">💎</span>
+      <span id="points-display-value-1" className="points-value">{points}</span>
     </div>
   );
 };

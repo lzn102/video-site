@@ -100,7 +100,7 @@ export const translations = {
     step1Desc: 'Select the corresponding processing function based on your needs and click to enter the corresponding page',
     step2: 'Upload File',
     step2Desc: 'Select and upload the video or audio file you need to process, supports multiple formats',
-    step3: 'Wait for Processing',
+    step3: 'Wait Processing',
     step3Desc: 'The system will automatically process your file, processing time depends on file size',
     step4: 'Download Result',
     step4Desc: 'Download the result file after processing is complete, can be used directly or further edited',

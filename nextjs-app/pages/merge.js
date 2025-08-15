@@ -96,51 +96,54 @@ export default function Merge() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient">
+    <div id="merge-container-1" className="min-h-screen bg-gradient">
       <Head>
-        <title>{t.mergeTitle} - {t.homeTitle}</title>
-        <meta name="description" content={language === 'zh' ? '将视频和音频文件无缝合并为新的视频文件' : 'Seamlessly merge video and audio files into new video files'} />
+        <title id="merge-title-1">{t.mergeTitle} - {t.homeTitle}</title>
+        <meta id="merge-description-meta-1" name="description" content={language === 'zh' ? '将视频和音频文件无缝合并为新的视频文件' : 'Seamlessly merge video and audio files into new video files'} />
       </Head>
 
       <Header />
-      <main className="main container">
+      <main id="merge-main-1" className="main container">
         
-        <div className="text-center pt-16 pb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+        <div id="merge-hero-section-1" className="text-center pt-16 pb-12">
+          <h1 id="merge-heading-1" className="text-4xl font-bold text-gray-800 mb-4">
             {t.mergeTitle}
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p id="merge-description-1" className="text-xl text-gray-600 max-w-2xl mx-auto">
             {t.mergeDescription}
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
-          <form onSubmit={handleSubmit} className="merge-form">
-            <div className="file-input-container">
-              <label className="block mb-2 font-medium text-gray-700">{t.videoFile}</label>
+        <div id="merge-form-container-1" className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
+          <form id="merge-form-1" onSubmit={handleSubmit} className="merge-form">
+            <div id="merge-video-input-container-1" className="file-input-container">
+              <label id="merge-video-label-1" className="block mb-2 font-medium text-gray-700">{t.videoFile}</label>
               <input 
+                id="merge-video-input-1"
                 type="file" 
                 ref={videoInputRef}
                 onChange={handleVideoChange} 
                 accept="video/*" 
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus-outline-none focus-ring-2 focus-ring-blue-500 focus-border-blue-500"
               />
-              {videoFile && <p className="mt-1 text-sm text-gray-500">{language === 'zh' ? '已选择视频:' : 'Selected video:'} {videoFile.name}</p>}
+              {videoFile && <p id="merge-selected-video-1" className="mt-1 text-sm text-gray-500">{language === 'zh' ? '已选择视频:' : 'Selected video:'} {videoFile.name}</p>}
             </div>
 
-            <div className="file-input-container">
-              <label className="block mb-2 font-medium text-gray-700">{t.audioFile}</label>
+            <div id="merge-audio-input-container-1" className="file-input-container">
+              <label id="merge-audio-label-1" className="block mb-2 font-medium text-gray-700">{t.audioFile}</label>
               <input 
+                id="merge-audio-input-1"
                 type="file" 
                 ref={audioInputRef}
                 onChange={handleAudioChange} 
                 accept="audio/*" 
                 className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus-outline-none focus-ring-2 focus-ring-blue-500 focus-border-blue-500"
               />
-              {audioFile && <p className="mt-1 text-sm text-gray-500">{language === 'zh' ? '已选择音频:' : 'Selected audio:'} {audioFile.name}</p>}
+              {audioFile && <p id="merge-selected-audio-1" className="mt-1 text-sm text-gray-500">{language === 'zh' ? '已选择音频:' : 'Selected audio:'} {audioFile.name}</p>}
             </div>
             
             <button 
+              id="merge-submit-button-1"
               type="submit" 
               disabled={isMerging || !videoFile || !audioFile}
               className="btn-primary"
@@ -151,29 +154,30 @@ export default function Merge() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4 mt-6 text-center text-red-700 max-w-2xl mx-auto">
-            <p>{error}</p>
+          <div id="merge-error-container-1" className="bg-red-50 border border-red-200 rounded-md p-4 mt-6 text-center text-red-700 max-w-2xl mx-auto">
+            <p id="merge-error-message-1">{error}</p>
           </div>
         )}
 
         {result && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-4 mt-6 text-center max-w-2xl mx-auto">
-            <h2 className="text-xl font-bold text-green-800 mb-3">{t.mergeSuccess}</h2>
+          <div id="merge-result-container-1" className="bg-green-50 border border-green-200 rounded-md p-4 mt-6 text-center max-w-2xl mx-auto">
+            <h2 id="merge-result-title-1" className="text-xl font-bold text-green-800 mb-3">{t.mergeSuccess}</h2>
             <a 
+              id="merge-download-link-1"
               href={result.url} 
               download={result.filename}
               className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover-bg-blue-700"
             >
               {t.mergeDownload} {result.filename}
             </a>
-            <div className="mt-3 text-sm text-green-700">
+            <div id="merge-points-deducted-1" className="mt-3 text-sm text-green-700">
               {language === 'zh' ? '已扣除 25 积分' : '25 points deducted'}
             </div>
           </div>
         )}
 
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

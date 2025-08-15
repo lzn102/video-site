@@ -85,42 +85,42 @@ export default function Translate() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient">
+    <div id="translate-container-1" className="min-h-screen bg-gradient">
       <Head>
-        <title>{t.translateTitle} - {t.homeTitle}</title>
-        <meta name="description" content={language === 'zh' ? '将字幕文件翻译为多种语言，支持国际化内容' : 'Translate subtitle files into multiple languages, supports international content'} />
+        <title id="translate-title-1">{t.translateTitle} - {t.homeTitle}</title>
+        <meta id="translate-description-meta-1" name="description" content={language === 'zh' ? '将字幕文件翻译为多种语言，支持国际化内容' : 'Translate subtitle files into multiple languages, supports international content'} />
       </Head>
 
       <Header />
-      <main className="main container">
+      <main id="translate-main-1" className="main container">
         
-        <div className="text-center pt-16 pb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+        <div id="translate-hero-section-1" className="text-center pt-16 pb-12">
+          <h1 id="translate-heading-1" className="text-4xl font-bold text-gray-800 mb-4">
             {t.translateTitle}
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p id="translate-description-1" className="text-xl text-gray-600 max-w-2xl mx-auto">
             {t.translateDescription}
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
-          <div className="language-selector">
-            <label htmlFor="language" className="block mb-2 font-medium text-gray-700">
+        <div id="translate-form-container-1" className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
+          <div id="translate-language-selector-1" className="language-selector">
+            <label id="translate-language-label-1" htmlFor="translate-language-select-1" className="block mb-2 font-medium text-gray-700">
               {t.targetLanguage} 🌍:
             </label>
             <select 
-              id="language" 
+              id="translate-language-select-1" 
               value={targetLanguage} 
               onChange={(e) => setTargetLanguage(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus-outline-none focus-ring-2 focus-ring-blue-500 focus-border-blue-500"
             >
-              <option value="en">{getLanguageName('en')}</option>
-              <option value="zh">{getLanguageName('zh')}</option>
-              <option value="ja">{getLanguageName('ja')}</option>
-              <option value="ko">{getLanguageName('ko')}</option>
-              <option value="fr">{getLanguageName('fr')}</option>
-              <option value="de">{getLanguageName('de')}</option>
-              <option value="es">{getLanguageName('es')}</option>
+              <option id="translate-language-option-en-1" value="en">{getLanguageName('en')}</option>
+              <option id="translate-language-option-zh-1" value="zh">{getLanguageName('zh')}</option>
+              <option id="translate-language-option-ja-1" value="ja">{getLanguageName('ja')}</option>
+              <option id="translate-language-option-ko-1" value="ko">{getLanguageName('ko')}</option>
+              <option id="translate-language-option-fr-1" value="fr">{getLanguageName('fr')}</option>
+              <option id="translate-language-option-de-1" value="de">{getLanguageName('de')}</option>
+              <option id="translate-language-option-es-1" value="es">{getLanguageName('es')}</option>
             </select>
           </div>
 
@@ -132,29 +132,30 @@ export default function Translate() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4 mt-6 text-center text-red-700 max-w-2xl mx-auto">
-            <p>{error}</p>
+          <div id="translate-error-container-1" className="bg-red-50 border border-red-200 rounded-md p-4 mt-6 text-center text-red-700 max-w-2xl mx-auto">
+            <p id="translate-error-message-1">{error}</p>
           </div>
         )}
 
         {result && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-4 mt-6 text-center max-w-2xl mx-auto">
-            <h2 className="text-xl font-bold text-green-800 mb-3">{t.translateSuccess}</h2>
+          <div id="translate-result-container-1" className="bg-green-50 border border-green-200 rounded-md p-4 mt-6 text-center max-w-2xl mx-auto">
+            <h2 id="translate-result-title-1" className="text-xl font-bold text-green-800 mb-3">{t.translateSuccess}</h2>
             <a 
+              id="translate-download-link-1"
               href={result.url} 
               download={result.filename}
               className="inline-block px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover-bg-blue-700"
             >
               {t.translateDownload} {result.filename}
             </a>
-            <div className="mt-3 text-sm text-green-700">
+            <div id="translate-points-deducted-1" className="mt-3 text-sm text-green-700">
               {language === 'zh' ? '已扣除 20 积分' : '20 points deducted'}
             </div>
           </div>
         )}
 
-        <Footer />
       </main>
+      <Footer />
     </div>
   );
 }
