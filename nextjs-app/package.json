@@ -6,14 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:init": "node lib/postgresExamples.js"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.1",
     "fluent-ffmpeg": "^2.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.1",
     "multer": "^1.4.5-lts.1",
     "next": "^15.4.6",
     "next-connect": "^0.12.2",
+    "pg": "^8.16.3",
+    "postcss": "^8.5.6",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.12"
   }
 }
