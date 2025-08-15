@@ -1,0 +1,44 @@
+# 依赖目录
+/node_modules/
+/.pnp
+.pnp.js
+
+# Next.js 构建输出
+/.next/
+/out/
+
+# 开发缓存
+/.swc
+/.vscode/
+/.idea/
+
+# 环境变量
+.env*.local
+.env
+.env.development
+.env.production
+.env.test
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 系统文件
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# 测试相关
+/coverage/
+/.nyc_output/
+
+# 其他
+.next/
+.next/cache/
+.next/standalone/
+.next/server/
+.next/trace
