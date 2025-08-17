@@ -20,6 +20,8 @@ export default function UploadForm({ onFileUpload, fileType, buttonText, showPre
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+    if (!selectedFile) return;
+    
     setFile(selectedFile);
     
     // 清理之前的预览URL
@@ -60,7 +62,25 @@ export default function UploadForm({ onFileUpload, fileType, buttonText, showPre
   };
 
   const triggerFileSelect = () => {
-    fileInputRef.current.click();
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+      fileInputRef.current.click();
+    }
+  };
+
+  const clearFile = () => {
+    setFile(null);
+    setPreviewUrl(null);
+    
+    // 清理预览URL
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    
+    // 重置文件输入框
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   return (
@@ -70,8 +90,7 @@ export default function UploadForm({ onFileUpload, fileType, buttonText, showPre
         <div className="flex flex-col items-center">
           <div 
             id="video-upload-preview-container-1"
-            className="w-80 h-80 bg-white border-2 border-dashed border-gray-800 rounded-xl flex flex-col items-center justify-center cursor-pointer relative shadow-lg hover:border-gray-900 transition-all duration-300 hover:shadow-xl"
-            onClick={triggerFileSelect}
+            className="w-80 h-80 border-2 border-gray-800 rounded-xl flex flex-col items-center justify-center relative shadow-lg hover:border-gray-900 transition-all duration-300 hover:shadow-xl"
           >
             {previewUrl ? (
               <div className="w-full h-full flex items-center justify-center rounded-lg bg-black">
@@ -89,7 +108,7 @@ export default function UploadForm({ onFileUpload, fileType, buttonText, showPre
               <>
                 <div className="text-5xl mb-4 text-blue-500 animate-bounce">📹</div>
                 <p className="text-gray-700 text-center px-4 font-medium">
-                  {language === 'zh' ? '点击选择视频文件' : 'Click to select video file'}
+                  {language === 'zh' ? '点击下方按钮上传视频文件' : 'Click the button below to upload video file'}
                 </p>
                 <p className="text-gray-500 text-sm mt-2 text-center px-4">
                   {language === 'zh' ? '支持 MP4, MOV, AVI 等格式' : 'Supports MP4, MOV, AVI and other formats'}
@@ -102,19 +121,39 @@ export default function UploadForm({ onFileUpload, fileType, buttonText, showPre
               type="file" 
               onChange={handleFileChange} 
               accept="video/*"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-default"
             />
           </div>
           
-          {file && (
-            <p id="upload-form-selected-file-1" className="mt-2 text-sm text-gray-500 text-center">
-              {language === 'zh' ? '已选择文件:' : 'Selected file:'} {file.name}
-            </p>
-          )}
+          <div id="upload-form-buttons-container-1" className="flex flex-col items-center mt-6 w-full justify-between flex-row">
+            <div id="upload-form-buttons-wrapper-1" className="flex space-x-4 w-full justify-between">
+              <button
+                type="button"
+                onClick={triggerFileSelect}
+                className="px-4 py-2 bg-gray-200 text-gray-800 text-sm rounded-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm min-w-[100px]"
+              >
+                {language === 'zh' ? '上传文件' : 'Upload File'}
+              </button>
+              {file && (
+                <button
+                  type="button"
+                  onClick={clearFile}
+                  className="px-4 py-2 bg-gray-200 text-gray-800 text-sm rounded-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm min-w-[100px]"
+                >
+                  {language === 'zh' ? '清除文件' : 'Clear File'}
+                </button>
+              )}
+            </div>
+            {file && (
+              <p id="upload-form-selected-file-1" className="mt-3 text-sm text-gray-500 text-center">
+                {language === 'zh' ? '已选择文件:' : 'Selected file:'} {file.name}
+              </p>
+            )}
+          </div>
         </div>
       ) : (
         // 默认上传区域
-        <div id="upload-form-file-input-container-1" className="file-input-container">
+        <div id="upload-form-file-input-container-1" className="file-input-container w-4/5">
           <input 
             ref={fileInputRef}
             id="upload-form-file-input-1"

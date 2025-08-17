@@ -4,11 +4,13 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import { usePoints } from '../contexts/PointsContext';
+import { useAuth } from '../contexts/AuthContext';
 import { translations } from '../lib/translations';
 
 export default function Merge() {
   const { language } = useLanguage();
   const { points, deductPoints } = usePoints();
+  const { isAuthenticated } = useAuth();
   const t = translations[language];
   const [videoFile, setVideoFile] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
@@ -36,6 +38,15 @@ export default function Merge() {
       return;
     }
     
+    // 检查用户是否已登录
+    if (!isAuthenticated) {
+      const errorMsg = language === 'zh' ? 
+        '请先登录以使用此服务' :
+        'Please log in to use this service';
+      setError(errorMsg);
+      return;
+    }
+    
     // 检查积分是否足够
     if (points < 25) {
       const errorMsg = language === 'zh' ? 
@@ -46,7 +57,8 @@ export default function Merge() {
     }
     
     // 扣除积分
-    if (!deductPoints(25)) {
+    const deductionSuccess = await deductPoints(25, language === 'zh' ? '视频音频合并服务' : 'Video Audio Merge Service');
+    if (!deductionSuccess) {
       const errorMsg = language === 'zh' ? 
         '积分扣除失败，请重试' :
         'Failed to deduct points, please try again';

@@ -4,11 +4,13 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useLanguage } from '../contexts/LanguageContext';
 import { usePoints } from '../contexts/PointsContext';
+import { useAuth } from '../contexts/AuthContext';
 import { translations } from '../lib/translations';
 
 export default function Home() {
   const { language } = useLanguage();
   const { points } = usePoints();
+  const { isAuthenticated } = useAuth();
   const t = translations[language];
   
   // 积分消耗信息
@@ -160,6 +162,42 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {isAuthenticated && (
+          <div id="home-points-section-1" className="mt-16 text-center">
+            <div id="home-points-container-1" className="inline-block bg-green-50 rounded-lg shadow-md p-6 max-w-4xl w-full">
+              <h2 id="home-points-title-1" className="text-2xl font-bold text-gray-800 mb-4">
+                {language === 'zh' ? '积分管理' : 'Points Management'}
+              </h2>
+              <div id="home-points-content-1" className="flex flex-col md-flex-row items-center justify-between gap-6">
+                <div id="home-points-balance-1" className="text-center">
+                  <div id="home-points-balance-label-1" className="text-gray-600 mb-2">
+                    {language === 'zh' ? '当前积分余额' : 'Current Points Balance'}
+                  </div>
+                  <div id="home-points-balance-value-1" className="text-3xl font-bold text-green-600">
+                    {points} {language === 'zh' ? '积分' : 'Points'}
+                  </div>
+                </div>
+                <div id="home-points-actions-1" className="flex gap-4">
+                  <Link 
+                    id="home-recharge-link-1"
+                    href="/recharge" 
+                    className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors"
+                  >
+                    {language === 'zh' ? '充值积分' : 'Recharge Points'}
+                  </Link>
+                  <Link 
+                    id="home-history-link-1"
+                    href="/points-history" 
+                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors"
+                  >
+                    {language === 'zh' ? '交易记录' : 'Transaction History'}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
       </main>
       <Footer />

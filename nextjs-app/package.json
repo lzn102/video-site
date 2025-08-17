@@ -2,12 +2,16 @@
   "name": "nextjs-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:init": "node lib/postgresExamples.js"
+    "db:init": "node scripts/init-db.js",
+    "db:migrate": "node scripts/migrate-db.js",
+    "test:registration": "node scripts/test-registration.js",
+    "check:env": "node scripts/check-env.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.12",

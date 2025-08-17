@@ -69,6 +69,7 @@ nextjs-app/
 3. The application uses client-side language preference storage in localStorage
 4. API endpoints return processed files directly as downloads rather than storing them
 5. All processing is synchronous and blocking - no queue system is implemented
+6. When adding styles to components, always specify the id attribute to facilitate precise modifications
 
 ## Testing
 
